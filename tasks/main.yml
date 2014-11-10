@@ -6,6 +6,14 @@
     - marvel
     - logging
 
+- name: Update Kibana ElasticSearch configuration
+  lineinfile:
+    dest: /usr/share/elasticsearch/plugins/marvel/_site/kibana/config.js
+    regexp: "elasticsearch: "
+    line: "elasticsearch: \"{{ marvel_elasticsearch_url }}\","
+  tags:
+    - marvel
+
 - name: Create nginx configuration
   template: src=marvel.conf.j2 dest=/etc/nginx/sites-available/marvel.conf owner=root group=root mode=0644
   notify:
