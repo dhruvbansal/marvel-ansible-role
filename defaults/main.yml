@@ -1,0 +1,25 @@
+---
+
+marvel_user:         www-data   # to match nginx
+marvel_group:        www-data   # to match nginx
+
+marvel_log_dir:    /var/log/marvel
+
+# This is the same as the value of the Host header passed in by the
+# browser, e.g. - the domain the user thinks she is browsing. This is
+# what nginx will listen for.
+marvel_fqdn:           marvel.example.com
+
+# This is where the browser can find ElasticSearch through the
+# frontend.  Should be pointed back at nginx so it can proxy to the
+# (real) backend ElasticSearch.
+marvel_elasticsearch_url: https://marvel.example.com
+
+# These files should exist and implement the desired firewall and
+# proxy parameters for nginx.
+marvel_firewall_rules: /etc/nginx/conf.d/firewall.conf
+marvel_proxy_params:   /etc/nginx/proxy_params
+
+marvel_kibana_index: .marvel-int
+
+logstash_conf_dir: /etc/logstash/conf.d

@@ -1,0 +1,23 @@
+---
+
+- name: Create log directory
+  file: state=directory path={{ marvel_log_dir }} owner={{ marvel_user }} group={{ marvel_group }} mode=0755
+  tags:
+    - marvel
+    - logging
+
+- name: Create nginx configuration
+  template: src=marvel.conf.j2 dest=/etc/nginx/sites-available/marvel.conf owner=root group=root mode=0644
+  notify:
+    - restart nginx
+  tags:
+    - marvel
+    - nginx
+      
+- name: Enable nginx configuration
+  file: state=link src=/etc/nginx/sites-available/marvel.conf dest=/etc/nginx/sites-enabled/marvel.conf owner=root group=root mode=0644
+  tags:
+    - marvel
+    - nginx
+
+- include: logstash.yml

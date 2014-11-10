@@ -1,0 +1,27 @@
+# {{ ansible_managed }}
+
+server {
+    listen              443 ssl;
+    server_name         {{ marvel_fqdn }};
+
+    access_log          {{ marvel_log_dir }}/nginx.access.log;
+    error_log           {{ marvel_log_dir }}/nginx.error.log;
+    
+    location / {
+        proxy_pass http://elasticsearch/_plugin/marvel/;
+        include    {{ marvel_proxy_params }};
+        include    {{ marvel_firewall_rules }};
+    }
+
+    location ~ ^.*/_(aliases|nodes|search|mapping)$ {
+        proxy_pass http://elasticsearch;
+        include    {{ kibana_proxy_params }};
+        include    {{ kibana_firewall_rules }};
+    }
+    
+    location ~ ^/{{ marvel_kibana_index }}/(temp|dashboard).*$ {
+        proxy_pass http://elasticsearch;
+        include    {{ kibana_proxy_params }};
+        include    {{ kibana_firewall_rules }};        
+    }
+}
