@@ -15,13 +15,13 @@ server {
 
     location ~ ^.*/_(aliases|nodes|search|mapping)$ {
         proxy_pass http://elasticsearch;
-        include    {{ kibana_proxy_params }};
-        include    {{ kibana_firewall_rules }};
+        include    {{ marvel_proxy_params }};
+        include    {{ marvel_firewall_rules }};
     }
     
     location ~ ^/{{ marvel_kibana_index }}/(temp|dashboard).*$ {
         proxy_pass http://elasticsearch;
-        include    {{ kibana_proxy_params }};
-        include    {{ kibana_firewall_rules }};        
+        include    {{ marvel_proxy_params }};
+        include    {{ marvel_firewall_rules }};        
     }
 }

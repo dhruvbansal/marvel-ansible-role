@@ -22,4 +22,5 @@ marvel_proxy_params:   /etc/nginx/proxy_params
 
 marvel_kibana_index: .marvel-int
 
+marvel_use_logstash: true
 logstash_conf_dir: /etc/logstash/conf.d
