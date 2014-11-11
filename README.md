@@ -68,7 +68,7 @@ The following variables are exposed for configuration:
 * `marvel_elasticsearch_url` -- full URL for nginx virtual server (e.g. - https://marvel.example.com)
 * `marvel_firewall_rules` -- path to nginx firewall configuration
 * `marvel_proxy_params` -- path to nginx proxy params
-* `marvel_kibana_index` -- name of Kibana index used by Marvel
+* `marvel_kibana_index` -- name of ElasticSearch index used by Marvel for Kibana (default: .marvel-int)
 * `marvel_use_logstash` -- set to `false` to skip logstash configuration
 
 Ensure that `marvel_elasticsearch_url` and `marvel_fqdn` match.  It is
