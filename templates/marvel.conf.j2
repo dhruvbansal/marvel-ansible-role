@@ -13,7 +13,7 @@ server {
         include    {{ marvel_firewall_rules }};
     }
 
-    location ~ ^.*/_(aliases|nodes|search|mapping)$ {
+    location ~ ^.*/_(aliases|nodes|m?search|mapping|m?get)$ {
         proxy_pass http://elasticsearch;
         include    {{ marvel_proxy_params }};
         include    {{ marvel_firewall_rules }};
