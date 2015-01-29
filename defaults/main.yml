@@ -17,7 +17,7 @@ marvel_elasticsearch_url: https://marvel.example.com
 
 # These files should exist and implement the desired firewall and
 # proxy parameters for nginx.
-marvel_firewall_rules: /etc/nginx/conf.d/firewall.conf
+marvel_firewall_rules: /etc/nginx/firewall.conf
 marvel_proxy_params:   /etc/nginx/proxy_params
 
 marvel_kibana_index: .marvel-int
